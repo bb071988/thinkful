@@ -5,11 +5,22 @@
 
 # -*- coding: cp1252 -*-
 
+import sys
 
-upperLimit = 100
+upperLimit = 0
 
 x=1
 
+
+while(upperLimit == 0):
+    if len(sys.argv) >= 2:
+        tempLimit = sys.argv[1]
+        upperLimit = int(tempLimit)
+
+    else:
+        tempLimit = raw_input("Please enter an integer to fizzbuzz  ")
+        upperLimit = int(tempLimit)
+    
 while(x < upperLimit + 1):
 
     fizz = False
