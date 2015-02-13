@@ -7,39 +7,52 @@
 
 import sys
 
-upperLimit = 0
+upperLimit = None
 
 x=1
 
+inputList =[1,2,3,4,5,6,7,8,9,10]
+outputList =['1','2','fizz','4','buzz','fizz','7','8','fizz',
+             'buzz','11','fizz','13','14','fizzbuzz']
 
-while(upperLimit == 0):
+
+
+def fizzbuzz(x):
+
+    if(x % 3==0 and x % 5 ==0):
+        return 'fizz buzz'
+    elif(x % 3==0):
+        return 'fizz'
+    elif(x % 5 ==0):
+        return 'buzz'
+    else:
+        return str(x)
+
+def test():
+
+    for i, item in enumerate(inputList):
+        print('Asserting that {} = {}'.format(fizzbuzz(item),outputList[i]))
+        assert(fizzbuzz(item) == outputList[i])
+
+
+while(upperLimit == None):
     if len(sys.argv) >= 2:
         tempLimit = sys.argv[1]
         upperLimit = int(tempLimit)
 
     else:
         tempLimit = raw_input("Please enter an integer to fizzbuzz  ")
-        upperLimit = int(tempLimit)
+        try:
+            upperLimit = int(tempLimit)
+        except:
+            print("invalid input ")
+            
+        
+test()
     
 while(x < upperLimit + 1):
 
-    fizz = False
-    buzz = False
-
-    if(x % 3==0):
-         fizz = True
-
-    if(x % 5 ==0):
-        buzz = True
-
-    if(fizz and buzz):
-        print("fizz buzz")
-    elif(fizz):
-            print('fizz')
-    elif(buzz):
-            print('buzz')
-    else:
-        print(x)
+    print(fizzbuzz(x))
 
     x+=1
     
